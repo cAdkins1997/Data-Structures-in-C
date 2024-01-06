@@ -23,7 +23,7 @@ Stack initStack(int size) {
 
 void resize(Stack* pStack, int newSize) {
     assert(pStack != nullptr && "pStack is null\n");
-    realloc(pStack->data,sizeof(int) * newSize);
+    pStack->data = (int*)realloc(pStack->data,sizeof(int) * newSize);
 }
 
 void push(Stack* pStack, int newData) {
