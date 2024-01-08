@@ -1,23 +1,24 @@
 #include <stdio.h>
 #include "stack.h"
 #include "queue.h"
+#include "sorting.h"
+#include "priorityqueue.h"
 
 int main() {
-    Stack stack = initStack(10);
+    PriorityQueue priorityQueue = initPriotyQueue(5);
     for (int i = 0; i < 10; i++) {
-        push(&stack, i);
-        printf("%d\n", stack.data[i]);
+         int newNumber = rand();
+        priorityEnqueue(&priorityQueue, newNumber, selectionSort);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        printf("%d\n", priorityQueue.data[i]);
     }
 
     printf("\n");
 
-    Queue queue = initQueue(10);
-    for (int i = 10; i > 0; i--) {
-        int number = pop(&stack);
-        enqueue(&queue, number);
-    }
-
     for (int i = 0; i < 10; i++) {
-        printf("%d\n", queue.data[i]);
+        int number = dequeue(&priorityQueue);
+        printf("%d\n", priorityQueue.data[i]);
     }
 }
