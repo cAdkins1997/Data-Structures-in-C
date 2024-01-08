@@ -7,41 +7,42 @@
 
 #endif //DATA_STRUCTURES_IN_C_QUEUE_H
 
-typedef struct  {
-    int* data;
-    size_t queuePointer;
-    size_t size;
-} Queue;
-
-Queue initQueue(int size) {
-    Queue queue;
-    queue.data = (int*)malloc(sizeof(int) * size);
-    queue.queuePointer = 0;
-    queue.size = size;
-    return queue;
-}
-
-void resizeQueue(Queue* pQueue, int newSize) {
-    assert(pQueue != nullptr && "pStack is null\n");
-    pQueue->data = (int*)realloc(pQueue->data,sizeof(int) * newSize);
-    assert(pQueue->data != nullptr && "failed to reallocate dynamic array");
-}
+typedef DArray Queue;
+typedef DArray PriorityQueue;
 
 void enqueue(Queue* pQueue, int newData) {
     assert(pQueue != nullptr && "pQueue is null\n");
     int* array = pQueue->data;
 
-    if (pQueue->size == pQueue->queuePointer) {
+    if (pQueue->size == pQueue->pointer) {
         pQueue->size++;
-        resizeQueue(pQueue, pQueue->size);
+        resizeDArray(pQueue, pQueue->size);
 
-        array[pQueue->queuePointer] = newData;
-        pQueue->queuePointer++;
+        array[pQueue->pointer] = newData;
+        pQueue->pointer++;
     }
     else {
-        array[pQueue->queuePointer] = newData;
-        pQueue->queuePointer++;
+        array[pQueue->pointer] = newData;
+        pQueue->pointer++;
     }
+}
+
+void priorityEnqueue(PriorityQueue* pQueue, int newData, void(*Predicate)(int[], int)) {
+    assert(pQueue != nullptr && "pQueue is null\n");
+    int* array = pQueue->data;
+
+    if (pQueue->size == pQueue->pointer) {
+        pQueue->size++;
+        resizeDArray(pQueue, pQueue->size);
+
+        array[pQueue->pointer] = newData;
+        pQueue->pointer++;
+    }
+    else {
+        array[pQueue->pointer] = newData;
+        pQueue->pointer++;
+    }
+    Predicate(pQueue->data, pQueue->pointer);
 }
 
 int dequeue(Queue* pQueue) {
@@ -49,28 +50,10 @@ int dequeue(Queue* pQueue) {
     int* array = pQueue->data;
     int data = array[0];
     array[0] = 0;
-    pQueue->queuePointer--;
+    pQueue->pointer--;
     return data;
 }
 
 int front(Queue* pQueue) {
     return pQueue->data[0];
-}
-
-bool isQueueEmpty(Queue* Queue) {
-    if (Queue->queuePointer == 0)
-        return true;
-    else
-        return false;
-}
-
-bool isQueueFull(Queue* Queue) {
-    if (Queue->queuePointer == Queue->size)
-        return true;
-    else
-        return false;
-}
-
-void freeQueue(Queue* Queue) {
-    free(Queue->data);
 }
