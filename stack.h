@@ -9,8 +9,8 @@
 
 typedef struct  {
     int* data;
-    int stackPointer;
-    int size;
+    size_t stackPointer;
+    size_t size;
 } Stack;
 
 Stack initStack(int size) {
@@ -50,6 +50,26 @@ int pop(Stack* pStack) {
     int data = array[pStack->stackPointer];
     array[pStack->size] = 0;
     return data;
+}
+
+int top(Stack* pStack) {
+    int* array = pStack->data;
+    pStack->stackPointer--;
+    return array[pStack->stackPointer];
+}
+
+bool isEmpty(Stack* pStack) {
+    if (pStack->stackPointer == 0)
+        return true;
+    else
+        return false;
+}
+
+bool isFull(Stack* pStack) {
+    if (pStack->stackPointer == pStack->size)
+        return true;
+    else
+        return false;
 }
 
 void freeStack(Stack* pStack) {
