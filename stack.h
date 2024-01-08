@@ -21,9 +21,10 @@ Stack initStack(int size) {
     return stack;
 }
 
-void resize(Stack* pStack, int newSize) {
+void resizeStack(Stack* pStack, int newSize) {
     assert(pStack != nullptr && "pStack is null\n");
     pStack->data = (int*)realloc(pStack->data,sizeof(int) * newSize);
+    assert(pStack->data != nullptr && "failed to reallocate dynamic array");
 }
 
 void push(Stack* pStack, int newData) {
@@ -32,7 +33,7 @@ void push(Stack* pStack, int newData) {
 
     if (pStack->size == pStack->stackPointer) {
         pStack->size++;
-        resize(pStack, pStack->size);
+        resizeStack(pStack, pStack->size);
 
         array[pStack->stackPointer] = newData;
         pStack->stackPointer++;
@@ -54,18 +55,17 @@ int pop(Stack* pStack) {
 
 int top(Stack* pStack) {
     int* array = pStack->data;
-    pStack->stackPointer--;
-    return array[pStack->stackPointer];
+    return array[pStack->stackPointer - 1];
 }
 
-bool isEmpty(Stack* pStack) {
+bool isStackEmpty(Stack* pStack) {
     if (pStack->stackPointer == 0)
         return true;
     else
         return false;
 }
 
-bool isFull(Stack* pStack) {
+bool isStackFull(Stack* pStack) {
     if (pStack->stackPointer == pStack->size)
         return true;
     else
