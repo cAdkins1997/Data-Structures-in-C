@@ -32,7 +32,7 @@ int pop(Stack* pStack) {
     int* array = pStack->data;
     pStack->pointer--;
     int data = array[pStack->pointer];
-    array[pStack->size] = 0;
+    array[pStack->pointer] = 0;
     return data;
 }
 

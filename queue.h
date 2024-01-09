@@ -49,7 +49,9 @@ int dequeue(Queue* pQueue) {
     assert(pQueue != nullptr && "pQueue is null\n");
     int* array = pQueue->data;
     int data = array[0];
-    array[0] = 0;
+    for (int i = 0; i < pQueue->size - 1; i++) {
+        array[i] = array[i + 1];
+    }
     pQueue->pointer--;
     return data;
 }

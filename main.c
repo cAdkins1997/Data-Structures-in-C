@@ -4,20 +4,19 @@
 #include "sorting.h"
 
 int main() {
-    PriorityQueue priorityQueue = initDArray(5);
-    for (int i = 0; i < 10; i++) {
-         int newNumber = rand();
-        priorityEnqueue(&priorityQueue, newNumber, selectionSort);
-    }
+    Stack stack = initDArray(10);
 
     for (int i = 0; i < 10; i++) {
-        printf("%d\n", priorityQueue.data[i]);
+        push(&stack, i);
+        printf("%d\n", stack.data[i]);
     }
 
     printf("\n");
 
+    Queue queue = initDArray(10);
     for (int i = 0; i < 10; i++) {
-        int number = dequeue(&priorityQueue);
-        printf("%d\n", priorityQueue.data[i]);
+        int num = pop(&stack);
+        enqueue(&queue, num);
+        printf("%d\n", queue.data[i]);
     }
 }
