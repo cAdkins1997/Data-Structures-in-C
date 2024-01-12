@@ -1,17 +1,5 @@
 
-#ifndef DATA_STRUCTURES_IN_C_DYNAMICARRAY_H
-#define DATA_STRUCTURES_IN_C_DYNAMICARRAY_H
-
-#include <stdlib.h>
-#include <assert.h>
-
-#endif //DATA_STRUCTURES_IN_C_DYNAMICARRAY_H
-
-typedef struct  {
-    int* data;
-    size_t pointer;
-    size_t size;
-} DArray;
+#include "dynamicarray.h"
 
 DArray initDArray(int size) {
     DArray dArray;

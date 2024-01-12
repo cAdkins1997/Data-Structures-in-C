@@ -1,10 +1,5 @@
 
-#ifndef DATA_STRUCTURES_IN_C_SORTING_H
-#define DATA_STRUCTURES_IN_C_SORTING_H
-
-#include <stdio.h>
-
-#endif //DATA_STRUCTURES_IN_C_SORTING_H
+#include "sorting.h"
 
 void swap(int* xp, int* yp) {
     int temp = *xp;
@@ -12,8 +7,7 @@ void swap(int* xp, int* yp) {
     *yp = temp;
 }
 
-void selectionSort(int arr[], int size)
-{
+void selectionSort(int arr[], int size) {
     int i, j, min;
 
     for (i = 0; i < size - 1; i++) {

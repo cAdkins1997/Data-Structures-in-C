@@ -1,0 +1,7 @@
+
+#ifndef DATA_STRUCTURES_IN_C_UTILITY_H
+#define DATA_STRUCTURES_IN_C_UTILITY_H
+
+#include "dynamicarray.h"
+
+#endif //DATA_STRUCTURES_IN_C_UTILITY_H

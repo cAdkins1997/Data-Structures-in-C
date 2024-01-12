@@ -1,14 +1,5 @@
 
-#ifndef DATA_STRUCTURES_IN_C_QUEUE_H
-#define DATA_STRUCTURES_IN_C_QUEUE_H
-
-#include <stdlib.h>
-#include <assert.h>
-
-#endif //DATA_STRUCTURES_IN_C_QUEUE_H
-
-typedef DArray Queue;
-typedef DArray PriorityQueue;
+#include "queue.h"
 
 void enqueue(Queue* pQueue, int newData) {
     assert(pQueue != nullptr && "pQueue is null\n");

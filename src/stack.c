@@ -1,14 +1,5 @@
 
-#ifndef C_DATA_STRUCTURES_STACK_H
-#define C_DATA_STRUCTURES_STACK_H
-
-#include <stdlib.h>
-#include <assert.h>
-#include "dynamicarray.h"
-
-#endif //C_DATA_STRUCTURES_STACK_H
-
-typedef DArray Stack;
+#include "stack.h"
 
 void push(Stack* pStack, int newData) {
     assert(pStack != nullptr && "pStack is null\n");
@@ -35,6 +26,7 @@ int pop(Stack* pStack) {
     array[pStack->pointer] = 0;
     return data;
 }
+
 
 int top(Stack* pStack) {
     int* array = pStack->data;
